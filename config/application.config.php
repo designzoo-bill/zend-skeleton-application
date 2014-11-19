@@ -1,15 +1,21 @@
 <?php
 
-$env = getenv('APP_ENV') ?: 'production';
+$env = getenv('APP_ENV') ?: 'local';
+
+// Use the $env value to determine which modules to load
+$modules = array(
+    'Application',
+    'DoctrineModule',
+    'DoctrineORMModule',    
+);
+
+if ($env == 'development' || $env == 'local') {
+    $modules[] = 'ZendDeveloperTools';
+}
 
 return array(
     // This should be an array of module namespaces used in the application.
-    'modules' => array(
-        'Application',
-        'ZendDeveloperTools',
-        'DoctrineModule',
-        'DoctrineORMModule',
-    ),
+    'modules' => $modules,
 
     // These are various options for the listeners attached to the ModuleManager
     'module_listener_options' => array(
@@ -26,7 +32,7 @@ return array(
         // modules are loaded. These effectively override configuration
         // provided by modules themselves. Paths may use GLOB_BRACE notation.
         'config_glob_paths' => array(
-            'config/autoload/{,*.}{global,local}.php',
+            sprintf('config/autoload/{,*.}{global,%s,local}.php', $env),
         ),
 
         // Whether or not to enable a configuration cache.

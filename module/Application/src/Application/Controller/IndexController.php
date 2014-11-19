@@ -7,23 +7,17 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-use Doctrine\ORM\EntityManager;
-
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
+use Doctrine\ORM\EntityManager;
 
 class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        $env = getenv('APP_ENV') ?: 'production';
-        
-        var_dump($env);
-        exit; 
-
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
         // create a user
@@ -52,7 +46,7 @@ class IndexController extends AbstractActionController
 
         //$em->flush();
 
-        return new ViewModel(array("addresses" => $addresses));
-        //return new JsonModel(array("user" => $user));
+        //return new ViewModel(array("addresses" => $addresses));
+        return new JsonModel(array("addresses" => $addresses));
     }
 }
