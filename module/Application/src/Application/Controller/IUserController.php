@@ -14,7 +14,7 @@ use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 use Doctrine\ORM\EntityManager;
 
-class IndexController extends AbstractActionController
+class UserController extends AbstractActionController
 {
     public function indexAction()
     {
