@@ -19,6 +19,11 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+        $env = getenv('APP_ENV') ?: 'production';
+        
+        var_dump($env);
+        exit; 
+
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
         // create a user
