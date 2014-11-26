@@ -18,18 +18,37 @@ class UserController extends AbstractActionController
 {
     public function indexAction()
     {
+        //$this->createTestData();
+
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $addresses = $em->find('Application\Entity\User', 1)->getAddresses();
+        return new ViewModel(array("addresses" => $addresses));
+    }
+
+    private function createTestData()
+    {
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
+        // create the db
+        $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
+
+        $classes = array(
+
+            $em->getClassMetadata('Application\Entity\User'),
+            $em->getClassMetadata('Application\Entity\Address')
+        );
+
+        $tool->dropSchema($classes);
+
+        $tool->createSchema($classes);
+
         // create a user
-        /*$user = new \Application\Entity\User();
+        $user = new \Application\Entity\User();
         $user->setUsername('bmorrison');
-        $em->persist($user);*/
+        $em->persist($user);
 
-        // create new address
-
-        $addresses = $em->find('Application\Entity\User', 2)->getAddresses();
-
-        /*for ($i=0;$i<10;$i++) {
+        // create new addresses
+        for ($i=0;$i<10;$i++) {
 
             $address = new \Application\Entity\Address();
             $address->setName('1 high street');
@@ -38,15 +57,8 @@ class UserController extends AbstractActionController
             // get our user and the address
             $user->getAddresses()->add($address);
             $address->setUser($user);
-        }*/
+        }
 
-        // delete user
-        /*$user = $em->find('Application\Entity\User', 1);
-        $em->remove($user);*/
-
-        //$em->flush();
-
-        return new ViewModel(array("addresses" => $addresses));
-        //return new JsonModel(array("addresses" => $addresses));
-    }
+        $em->flush();
+    }    
 }
