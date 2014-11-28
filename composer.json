@@ -16,7 +16,8 @@
         "doctrine/doctrine-module": "0.*",
         "doctrine/doctrine-orm-module": "dev-master",
         "zendframework/zftool": "dev-master",
-        "doctrine/dbal": "~2.3"
+        "doctrine/dbal": "~2.3",
+        "phpunit/phpunit": "4.3.*"
     },
     "minimum-stability": "dev"
 }
