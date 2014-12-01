@@ -1,6 +1,6 @@
 <?php
 
-$isMailTrap = true;
+$isMailTrap = false;
 
 // mailtrap
 $mailTrapHost               = 'mailtrap.io';
