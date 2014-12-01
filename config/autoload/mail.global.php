@@ -14,13 +14,13 @@ $mandrillHost               = 'smtp.mandrillapp.com';
 $mandrillConnectionClass    = 'login';
 $mandrillPort               = 587;
 $mandrillUsername           = getenv('MANDRILL_USERNAME');
-$mandrillPassword           = getenv('MANDRILL_PASSWORD');
+$mandrillApikey             = getenv('MANDRILL_APIKEY');
 
 $host                       = $isMailTrap ? $mailTrapHost : $mandrillHost;
 $connectionClass            = $isMailTrap ? $mailTrapConnectionClass : $mandrillConnectionClass;
 $port                       = $isMailTrap ? $mailTrapPort : $mandrillPort;
 $username                   = $isMailTrap ? $mailTrapUsername : $mandrillUsername;
-$password                   = $isMailTrap ? $mailTrapPassword : $mandrillPassword;
+$password                   = $isMailTrap ? $mailTrapPassword : $mandrillApikey;
 
 return array(
     'mail' => array(
