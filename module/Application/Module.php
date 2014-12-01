@@ -11,6 +11,8 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Mail\Transport\Smtp as SmtpTransport;
+use Zend\Mail\Transport\SmtpOptions as SmtpOptions;
 
 class Module
 {
@@ -36,4 +38,19 @@ class Module
             ),
         );
     }
+
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'mailTransport' => function ($serviceManager) {
+                    $config = $serviceManager->get('Config'); 
+                    $transport = new SmtpTransport();                
+                    $transport->setOptions(new SmtpOptions($config['mail']['transport']['options']));
+
+                    return $transport;
+                },
+            ),
+        );
+    }    
 }
