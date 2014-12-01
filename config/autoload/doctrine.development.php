@@ -1,10 +1,10 @@
 <?php
 
 // get the db details from Env Vars on server - this is good for security
-$host = getenv('DB_HOST');
-$user = getenv('DB_USER');
-$password = getenv('DB_PASSWORD');
-$dbname = getenv('DB_NAME');
+$host         = getenv('DB_HOST');
+$user         = getenv('DB_USER');
+$DB_PASSWORD  = getenv('DB_PASSWORD');
+$dbname       = getenv('DB_NAME');
 
 return array(
   'doctrine' => array(

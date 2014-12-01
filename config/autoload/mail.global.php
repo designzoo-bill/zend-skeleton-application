@@ -6,15 +6,15 @@ $isMailTrap = true;
 $mailTrapHost               = 'mailtrap.io';
 $mailTrapConnectionClass    = 'login';
 $mailTrapPort               = 465;
-$mailTrapUsername           = '2600189c78ecf24bd';
-$mailTrapPassword           = 'ffe778660e905d';
+$mailTrapUsername           = getenv('MAILTRAP_USERNAME');
+$mailTrapPassword           = getenv('MAILTRAP_PASSWORD');
 
 // mandrill
 $mandrillHost               = 'smtp.mandrillapp.com';
 $mandrillConnectionClass    = 'login';
 $mandrillPort               = 587;
-$mandrillUsername           = 'app31774676@heroku.com';
-$mandrillPassword           = 'w_pi4LPg1MGYhp5YwRyPCw';
+$mandrillUsername           = getenv('MANDRILL_USERNAME');
+$mandrillPassword           = getenv('MANDRILL_PASSWORD');
 
 $host                       = $isMailTrap ? $mailTrapHost : $mandrillHost;
 $connectionClass            = $isMailTrap ? $mailTrapConnectionClass : $mandrillConnectionClass;
