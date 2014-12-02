@@ -13,6 +13,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 use Doctrine\ORM\EntityManager;
+use Zend\View\Exception\RuntimeException;
 
 // Mail
 use Zend\Mail\Message;
