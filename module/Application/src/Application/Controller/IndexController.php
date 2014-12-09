@@ -35,7 +35,7 @@ class IndexController extends AbstractActionController
         	->setBody("Sorry, I'm going to be late today!");
 
         $transport = $this->getServiceLocator()->get('mailTransport');
-
+        
 		$transport->send($message);
     }
 }
