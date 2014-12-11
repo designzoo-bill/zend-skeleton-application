@@ -23,7 +23,7 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-    	$this->sendEmail();
+    	//$this->sendEmail();
     }
 
     private function sendEmail ()

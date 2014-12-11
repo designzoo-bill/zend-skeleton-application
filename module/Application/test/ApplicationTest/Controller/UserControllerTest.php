@@ -43,17 +43,20 @@ class UserControllerTest extends \PHPUnit_Framework_TestCase
         $this->routeMatch->setParam('action', 'index');
  
         // Kick the controller into action
-        //$result = $this->controller->dispatch($this->request);
+        $result = $this->controller->dispatch($this->request);
 
         // Check the HTTP response code
         $response = $this->controller->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
- 
+        
         // Check for a ViewModel to be returned
-        //$this->assertInstanceOf('Zend\View\Model\ViewModel', $result);
+        $this->assertInstanceOf('Zend\View\Model\ViewModel', $result);
  
         // Test the parameters contained in the View model
-        //$vars = $result->getVariables();
-        //$this->assertTrue(isset($vars['var']));
+        $vars = $result->getVariables();
+        $this->assertTrue(isset($vars['addresses']));
+        
+        // test address count
+        $this->assertEquals(10, count($vars['addresses']));
     }
 }
