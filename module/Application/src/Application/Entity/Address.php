@@ -75,5 +75,16 @@ class Address
     public function getCreated()
     {
         return $this->created;
+    } 
+
+    public function getArray()
+    {
+        return array(
+
+            'id' => $this->id,
+            'name' => $this->name,
+            'created' => $this->created,
+            'updated' => $this->updated,
+        );
     }      
 }

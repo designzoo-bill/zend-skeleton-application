@@ -11,6 +11,7 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\View\Model\JsonModel;
 use Doctrine\ORM\EntityManager;
 
 class UserController extends AbstractActionController
@@ -20,8 +21,18 @@ class UserController extends AbstractActionController
         //$this->createTestData();
 
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $addresses = $em->find('Application\Entity\User', 1)->getAddresses();
-        return new ViewModel(array("addresses" => $addresses));
+
+        // json
+        $addresses = $em->find('Application\Entity\User', 1)->getAddressesArray();
+        return new JsonModel(array("data" => $addresses));
+
+        // view
+        /*$addresses = $em->find('Application\Entity\User', 1)->getAddresses();
+        return new ViewModel(array("data" => $addresses));*/
+
+        // view
+        /*$addresses = $em->getRepository('Application\Entity\User')->test(1);
+        return new ViewModel(array("data" => $addresses));*/
     }
 
     private function createTestData()

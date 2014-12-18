@@ -1,12 +1,18 @@
 <?php
-// src/Product.php
+// src/Application/Entity/User.php
 
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\EntityRepository;
 
-/** @ORM\Entity  @ORM\Table(name="users") */
-class User
+/** 
+ * @ORM\Entity(repositoryClass="Application\Entity\UserRepository") 
+ * @ORM\Table(name="users")
+ */
+class User 
 {
     /**
     * @ORM\Id
@@ -61,6 +67,17 @@ class User
         return $this->addresses;
     }
 
+    public function getAddressesArray()
+    {
+        $array = array();
+
+        foreach ($this->addresses as $address) {
+
+            $array[] = $address->getArray();
+        }
+        return $array;
+    }
+
     public function setUpdated()
     {
         // WILL be saved in the database
@@ -70,5 +87,25 @@ class User
     public function getUpdated()
     {
         return $this->updated;
-    }       
+    }     
+}
+
+class UserRepository extends EntityRepository
+{
+
+    /**
+     * [test description]
+     * @param  [type] $userId [description]
+     * @return [type]         [description]
+     */
+    public function test($userId)
+    {
+        $qb = new QueryBuilder($this->_em);
+        $qb->select('u')
+            ->from('Application\Entity\User', 'u')
+            ->where("u.id = {$userId}")
+        ;
+
+        return $qb->getQuery()->getArrayResult();
+    }
 }

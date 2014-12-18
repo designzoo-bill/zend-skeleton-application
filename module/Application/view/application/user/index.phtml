@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($this->addresses as $address): ?>
+        <?php foreach ($this->data as $address): ?>
             <tr>
               <td><?php echo $address->getId(); ?></td>
               <td><?php echo $address->getUser()->getUsername(); ?></td>
