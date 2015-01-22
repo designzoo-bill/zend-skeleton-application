@@ -8,6 +8,6 @@ nbproject
 .settings
 /vendor/
 
+// Sublime
 *.sublime-project
-
 *.sublime-workspace
