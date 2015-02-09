@@ -23,12 +23,12 @@ class UserController extends AbstractActionController
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
         // json
-        $addresses = $em->find('Application\Entity\User', 1)->getAddressesArray();
-        return new JsonModel(array("data" => $addresses));
+        /*$addresses = $em->find('Application\Entity\User', 1)->getAddressesArray();
+        return new JsonModel(array("data" => $addresses));*/
 
         // view
-        /*$addresses = $em->find('Application\Entity\User', 1)->getAddresses();
-        return new ViewModel(array("data" => $addresses));*/
+        $addresses = $em->find('Application\Entity\User', 1)->getAddresses();
+        return new ViewModel(array("data" => $addresses));
 
         // view
         /*$addresses = $em->getRepository('Application\Entity\User')->test(1);
